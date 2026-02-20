@@ -1,0 +1,73 @@
+#Version: '3.8' # specify docker-compose version
+
+services:
+  db:
+    image: mariadb:latest
+    container_name: plant_db
+    env_file:
+      - ./.env # Load environment variables from .env file location tree root or should it be in requirements/mariadb?
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./requirements/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ${DB_VOLUME_PATH}:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mycelium
+    restart: unless-stopped #for production change too always
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "--password=${MYSQL_ROOT_PASSWORD}"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+  harvester:
+    image: harvester
+    container_name: harvester
+    env_file:
+      - ./.env
+    build:
+      context: ./requirements/harvester
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASS=${MYSQL_PASSWORD}
+    networks:
+      - mycelium
+    restart: unless-stopped #for production change to always
+    depends_on:
+      db:
+         condition: service_healthy
+  user:
+    image: user
+    container_name: user
+    env_file:
+      - ./.env
+    build:
+      context: ./requirements/user
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASS=${MYSQL_PASSWORD}
+    stdin_open: true
+    tty: true
+    networks:
+      - mycelium
+    restart: always
+    depends_on:
+      db:
+         condition: service_healthy
+volumes:
+  db-data:
+networks:
+  mycelium:
+    driver: bridge
+    name: mycelium_network
