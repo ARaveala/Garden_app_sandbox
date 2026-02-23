@@ -1,0 +1,21 @@
+{
+	"usda" : {
+		"name": "usda Plants Database",
+		"BaseURL": "https://plants.usda.gov", (this should list all plants and their symbols)
+		"endpoints": {
+			"browse": "/home/plantProfile?sort=sciname",
+			"plant_traits": "/plant-profile/{symbol}", (main plant page)
+			"plant_characteristics": "/plant-profile/{symbol}/characteristics" (extra info symbol is a placeholder)
+		},
+		"selectors": {
+			"plant_list_links": "a[href*='/plant-profile/']", (css selector to find links to plant pages)
+			"trait_table_rows": "tr" (css selctor to find raw data rows)
+		},
+		"rate_limit": {
+			"requests_per_second": 1,
+			"concurrent_requests": 1 (how many plants at the same time)
+		}
+
+
+	}
+}

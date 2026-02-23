@@ -1,0 +1,20 @@
+{
+	"usda" : {
+		"name": "usda Plants Database",
+		"baseUrl": "https://plants.usda.gov",
+		"baseurl2": "https://plantsservices.sc.egov.usda.gov",
+		"endpoints": {
+			"search_api":  "/api/characteristicSearchResults",
+			"plant_traits": "/plant-profile/{symbol}",
+			"plant_characteristics": "/plant-profile/{symbol}/characteristics"
+		},
+		"selectors": {
+			"plant_list_links": "table tbody tr th[scope='row'] a",
+			"trait_table_rows": "tr"
+		},
+		"rate_limit": {
+			"requests_per_second": 60,
+			"concurrent_requests": 3 
+		}
+	}
+}

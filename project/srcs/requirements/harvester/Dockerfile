@@ -20,4 +20,4 @@ RUN npm ci --only=production && npx playwright install chromium --with-deps
 
 COPY . .
 
-CMD ["node", "index.js"]
+CMD ["node", "src/index.js"]

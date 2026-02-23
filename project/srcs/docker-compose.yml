@@ -33,14 +33,17 @@ services:
     build:
       context: ./requirements/harvester
       dockerfile: Dockerfile
+    volumes:
+      - ./logs/harvester:/app/logs
     environment:
       - DB_HOST=db
+      - LOG_LEVEL=info
       - DB_NAME=${MYSQL_DATABASE}
       - DB_USER=${MYSQL_USER}
       - DB_PASS=${MYSQL_PASSWORD}
     networks:
       - mycelium
-    restart: unless-stopped #for production change to always
+    restart: on-failure #for production change to always?
     depends_on:
       db:
          condition: service_healthy
@@ -61,7 +64,7 @@ services:
     tty: true
     networks:
       - mycelium
-    restart: always
+    restart: on-failure
     depends_on:
       db:
          condition: service_healthy
