@@ -143,37 +143,55 @@ export class USDAScraper extends BaseScraper {
 	//	return traits;
 	//}
 //
-async scrapePlantData(identifier, options = {}) {
-  const dataType = options.dataType || 'profile';
+async scrapeData(identifier, options = {}) {
+  const dataType = options.dataType || 'full_profile';
   
-  scrapingLogger.info({ identifier, dataType }, 'Fetching plant data from API');
+  scrapingLogger.info({ identifier }, 'Fetching plant data from USDA');
   
-  // Use the API instead of scraping HTML!
-  const url = `https://plantsservices.sc.egov.usda.gov/api/PlantProfile?symbol=${identifier}`;
-  scrapingLogger.info({ url }, 'Calling PlantProfile API');
+  // Call 1: Get profile (includes ID)
+  const profileUrl = `${this.config.base_url}/api/PlantProfile?symbol=${identifier}`;
+  const profileResponse = await fetch(profileUrl);
   
-  const response = await fetch(url);
-  
-  if (!response.ok) {
-    throw new Error(`API returned ${response.status} for ${identifier}`);
+  if (!profileResponse.ok) {
+    throw new Error(`Profile API returned ${profileResponse.status} for ${identifier}`);
   }
   
-  const xmlText = await response.text();
+  const profileData = await profileResponse.json();
   
-  // Parse the XML to extract the actual plant data
-  // For now, let's just store the whole thing and parse it later
-  const plantData = {
-    xmlResponse: xmlText,
-    // We can add parsed fields here later
+  // Call 2: Get characteristics using ID from Call 1
+  const plantId = profileData.Id;
+  const characteristicsUrl = `${this.config.base_url}/api/PlantCharacteristics/${plantId}`;
+  const characteristicsResponse = await fetch(characteristicsUrl);
+  
+  if (!characteristicsResponse.ok) {
+    scrapingLogger.warn({ identifier, plantId }, 'Characteristics not available');
+    // Some plants might not have characteristics - that's OK
+  }
+  
+  const characteristicsData = characteristicsResponse.ok 
+    ? await characteristicsResponse.json() 
+    : null;
+  
+  scrapingLogger.info({ identifier, plantId, hasCharacteristics: !!characteristicsData }, 'Data fetched');
+  
+  // Minimal cleanup
+  const combinedData = {
+    symbol: profileData.Symbol,
+    scientificName: profileData.ScientificName,
+    commonName: profileData.CommonName,
+    group: profileData.Group,
+    durations: profileData.Durations || [],
+    growthHabits: profileData.GrowthHabits || [],
+    nativeStatuses: profileData.NativeStatuses || [],
+    
+    // Keep characteristics as-is for now (cleaner will process later)
+    characteristics: characteristicsData
   };
-  
-  scrapingLogger.info({ identifier }, 'Plant data fetched successfully');
   
   return {
     source: 'usda',
-    plant_identifier: identifier,
+    plant_identifier: identifier,  // Store the symbol
     data_type: dataType,
-    raw_json: plantData  // ← This is NOT undefined
+    raw_json: combinedData
   };
-}
-}
+}}
