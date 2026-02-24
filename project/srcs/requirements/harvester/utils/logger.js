@@ -47,7 +47,7 @@ export const logger = pino(
 
 // Scraping-specific logger (goes to console + scraping.log)
 export const scrapingLogger = pino(
-  { ...baseConfig, name: 'scraper' },
+  { ...baseConfig, name: 'DataHarvester' },
   isProduction
     ? pino.multistream([
         { stream: process.stdout },

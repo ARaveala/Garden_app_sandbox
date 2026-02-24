@@ -1,7 +1,7 @@
-export class BaseScraper {
+export class BaseDataHarvester {
 	constructor(config) {
 		if (!config) {
-			throw new Error('Config object is required to initialize the scraper');
+			throw new Error('Config object is required to initialize the DataHarvester');
 		}
 
 		this.config = config;
@@ -9,13 +9,13 @@ export class BaseScraper {
 		this.baseUrl = config.baseUrl;
 	}
 
-	// limit is optional, if not provided, it should scrape all plants available on the source
+	// limit is optional, if not provided, it should harvest all plants available on the source
 	async getPlantList(limit) {
 		throw new Error(`${this.name}: getPlantList() method must be implemented`);
 	}
 
-	async scrapePlantData(identifier, options = {}) {
-		throw new Error(`${this.name}: scrapePlantData() method must be implemented`);
+	async harvestPlantData(identifier, options = {}) {
+		throw new Error(`${this.name}: harvestPlantData() method must be implemented`);
 	}
 
 	buildURl(endpointkey, params = {}) {
@@ -26,9 +26,9 @@ export class BaseScraper {
 		for (const [key, value] of Object.entries(params)) {
 			endpoint = endpoint.replace(`{${key}}`, value);
 		}
-		return `${this.baseUrl}${endpoint}`;
+		return `${this.config.base_url_api}${endpoint}`;
 	}
-
+	
 	async sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}

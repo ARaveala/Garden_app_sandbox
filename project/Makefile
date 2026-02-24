@@ -31,6 +31,8 @@ enter-user:
 enter-mariadb:
 	docker exec -it mariadb sh
 
+user_up:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d user db
 # Show status of containers managed by docker-compose (only running)
 ps:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) ps

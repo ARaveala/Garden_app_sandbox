@@ -1,6 +1,3 @@
-#include <iostream>
-#include <mysql/mysql.h>
-#include <cstdlib>
 
 //int main() {
 //	// Initialize MySQL connection
@@ -22,6 +19,39 @@
 #include <iostream>
 #include <mysql/mysql.h>
 #include <cstdlib>
+#include <string>
+#include <iomanip>
+
+void printPrettyJSON(const std::string& json) {
+    int indent = 0;
+    bool inString = false;
+    
+    for (size_t i = 0; i < json.length(); i++) {
+        char c = json[i];
+        
+        // Track if we're inside a string
+        if (c == '"' && (i == 0 || json[i-1] != '\\')) {
+            inString = !inString;
+        }
+        
+        if (!inString) {
+            if (c == '{' || c == '[') {
+                std::cout << c << "\n" << std::string(++indent * 2, ' ');
+            } else if (c == '}' || c == ']') {
+                std::cout << "\n" << std::string(--indent * 2, ' ') << c;
+            } else if (c == ',') {
+                std::cout << c << "\n" << std::string(indent * 2, ' ');
+            } else if (c == ':') {
+                std::cout << c << " ";
+            } else if (c != ' ' && c != '\n' && c != '\r' && c != '\t') {
+                std::cout << c;
+            }
+        } else {
+            std::cout << c;
+        }
+    }
+    std::cout << "\n";
+}
 
 int main() {
     MYSQL *conn = mysql_init(nullptr);
@@ -64,7 +94,9 @@ int main() {
         std::cout << "Source: " << row[1] << "\n";
         std::cout << "Plant: " << row[2] << "\n";
         std::cout << "Data Type: " << row[3] << "\n";
-        std::cout << "JSON: " << row[4] << "\n";
+        printPrettyJSON(row[4]);
+		//std::cout << "Raw JSON Data:\n";
+		//std::cout << "JSON: " << row[4] << "\n";
         std::cout << "Timestamp: " << row[5] << "\n";
     }
 

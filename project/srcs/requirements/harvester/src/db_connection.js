@@ -44,8 +44,7 @@ export async function insertHarvest(data) {
 		console.error('Error inserting harvest data:', error);
 		throw error; // Re-raise the error so the caller knows it failed
 	}// finally {
-	//	await conn.end(); // Ensure connection is closed even if an error occurs
-	//}
+
 }
 
 export async function closeDBConnection() {

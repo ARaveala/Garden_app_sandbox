@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { USDAScraper } from './scrapers/usda.js';
+import { USDADataHarvester } from './DataHarvesters/usda.js';
 import { connectToDB, insertHarvest, closeDBConnection } from './db_connection.js';
 import { logger, errorLogger } from '#utils/logger.js';
 
@@ -41,30 +41,30 @@ async function main() {
     const config = loadConfig();
     logger.info('✓ Configuration loaded');
     
-    // 3. Initialize USDA scraper
-    logger.info('Initializing USDA scraper...');
-    const scraper = new USDAScraper(config.usda);
-    logger.info('✓ Scraper initialized');
+    // 3. Initialize USDA DataHarvester
+    logger.info('Initializing USDA DataHarvester...');
+    const DataHarvester = new USDADataHarvester(config.usda);
+    logger.info('✓ DataHarvester initialized');
     
-    // 4. Get list of plants to scrape
+    // 4. Get list of plants to harvest
     const PLANT_LIMIT = parseInt(process.env.PLANT_LIMIT || '3');
     logger.info({ limit: PLANT_LIMIT }, 'Fetching plant list...');
     
-    const plantSymbols = await scraper.getPlantList(PLANT_LIMIT);
+    const plantSymbols = await DataHarvester.getPlantList(PLANT_LIMIT);
     logger.info({ count: plantSymbols.length, plants: plantSymbols }, '✓ Plant list retrieved');
     
     if (plantSymbols.length === 0) {
-      logger.warn('No plants found to scrape');
+      logger.warn('No plants found to harvest');
       return;
     }
     
-    // 5. Define data types to scrape per plant
+    // 5. Define data types to harvest per plant
     const dataTypes = ['traits', 'characteristics'];
     
-    // 6. Scrape each plant
+    // 6. Harvest each plant
     logger.info('Starting data collection...');
     
-    let totalScraped = 0;
+    let totalHarvestd = 0;
     let totalInserted = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
@@ -74,10 +74,10 @@ async function main() {
       
       for (const dataType of dataTypes) {
         try {
-          // Scrape
+          // Harvest
           logger.info({ plant: symbol, type: dataType }, `Scraping ${dataType}...`);
-          const result = await scraper.scrapePlantData(symbol, { dataType });
-          totalScraped++;
+          const result = await DataHarvester.harvestPlantData(symbol, { dataType });
+          totalHarvestd++;
           
           // Insert into database
           const inserted = await insertHarvest(result);
@@ -114,7 +114,7 @@ async function main() {
     logger.info('========================================');
     logger.info('Harvesting Complete');
     logger.info({ 
-      scraped: totalScraped,
+      harvestd: totalHarvestd,
       inserted: totalInserted,
       skipped: totalSkipped,
       errors: totalErrors
@@ -153,7 +153,7 @@ main()
 //
 //### 1. **Clear Flow**
 //```
-//Load config → Connect DB → Init scraper → Get plants → Scrape → Insert → Summary
+//Load config → Connect DB → Init DataHarvester → Get plants → Harvest → Insert → Summary
 //import mysql from 'mysql2/promise';
 //
 //import { chromium } from "playwright";

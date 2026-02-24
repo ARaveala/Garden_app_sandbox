@@ -1,10 +1,12 @@
 {
 	"usda" : {
 		"name": "usda Plants Database",
-		"baseUrl": "https://plants.usda.gov",
-		"baseurl2": "https://plantsservices.sc.egov.usda.gov",
+		"base_url": "https://plants.usda.gov",
+		"base_url_api": "https://plantsservices.sc.egov.usda.gov",
 		"endpoints": {
 			"search_api":  "/api/characteristicSearchResults",
+			"plant_traits_api": "/api/PlantProfile?symbol={symbol}",
+			"plant_characteristics_api": "/api/PlantCharacteristics/{symbol}",
 			"plant_traits": "/plant-profile/{symbol}",
 			"plant_characteristics": "/plant-profile/{symbol}/characteristics"
 		},
@@ -18,4 +20,3 @@
 		}
 	}
 }
-https://plantsservices.sc.egov.usda.gov/api/PlantCharacteristics/15309
