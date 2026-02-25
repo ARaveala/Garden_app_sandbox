@@ -71,7 +71,7 @@ async function main() {
     
     for (const symbol of plantSymbols) {
       logger.info({ plant: symbol }, `Processing plant: ${symbol}`);
-      
+	  //const types =
       for (const dataType of dataTypes) {
         try {
           // Harvest

@@ -1,9 +1,12 @@
 # Garden sandbox
 
+"Distributed data collection and processing system using Docker, Node.js (harvesting), and C++ (processing). Demonstrates multi-container architecture, API integration, and database management."
+
+
 Plant Growth Data Harvester
 A distributed data collection and processing system for gathering plant growth information from multiple sources to enable accurate, location-specific growing predictions.
 Current Status: Phase 1 Complete ✓
-Successfully implemented basic data pipeline: scrape → store → display
+Successfully implemented basic data pipeline: harvest → store → display
 Architecture
 Container 1: Harvester (Node.js + Playwright)
 
@@ -34,7 +37,7 @@ Phase 1: Proof of Concept ✅
 Phase 2: Multi-Source Harvesting 🔄 (In Progress)
 
  Code refactoring and modular structure
- Multiple source scrapers for single plant
+ Multiple source DataHarvesters for single plant
  Concurrent data collection
  Source abstraction layer
 
@@ -106,3 +109,34 @@ Single plant scraping only
 No deduplication logic
 Manual data inspection required
 Restart policies cause data duplication (being addressed in Phase 2)
+
+
+# the real deal 
+# Distributed Data Collection System
+
+Multi-container application demonstrating data harvesting, storage, and processing.
+
+## Architecture
+
+- **Harvester** (Node.js): Fetches data from external APIs
+- **Database** (MariaDB): Stores raw and processed data
+- **Processor** (C++): Transforms and validates data
+
+## Technologies
+
+- Docker & Docker Compose
+- Node.js with async/await patterns
+- C++ with MariaDB connector
+- RESTful API integration
+
+## Running
+```bash
+docker-compose up
+```
+
+## Skills Demonstrated
+
+- Multi-container orchestration
+- Database design and management
+- Async programming
+- Cross-language integration

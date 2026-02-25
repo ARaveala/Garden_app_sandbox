@@ -2,76 +2,89 @@ import pino from 'pino';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// copy pasted fully from claud bot's logger.js with some adjustments for multiple loggers and file streams
+// consider adding if enabled trace to env... its alot of data and if not needed we should be able to turn it on and off
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Create logs directory if it doesn't exist
-const logsDir = path.join(__dirname, '../../logs');
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir, { recursive: true });
+// should logsDir dir path be configurable via env ?
+const logsDir = process.env.LOGS_DIR || '/app/logs';
+
+const baseConfig = {
+	level: process.env.LOG_LEVEL || 'info',
+	timestamp: pino.stdTimeFunctions.isoTime,  // ISO 8601 format
+	base: null, // Don't include pid and hostname, add back in production if needed
+	formatters: {
+		level: (label) => {
+			return { level: label };
+		}
+	}
+};
+
+// Shows jason output in a more readble form, good for development and debugging, but not ideal for production log files
+function  prettyFileTransport(filepath) {
+	return pino.transport({
+		target: 'pino-pretty',
+		options: {
+			colorize: false,  // No colors in files
+			translateTime: 'yyyy-mm-dd HH:MM:ss',
+			ignore: 'pid,hostname',
+			singleLine: false,
+			destination: filepath  // Will be overridden per stream
+		}
+	});
 }
 
-// Base logger configuration
-const baseConfig = {
-  level: process.env.LOG_LEVEL || 'info',
-  formatters: {
-    level: (label) => {
-      return { level: label };
-    }
-  }
-};
-
-// Development: pretty output to console
-const devTransport = {
-  target: 'pino-pretty',
-  options: {
-    colorize: true,
-    translateTime: 'HH:MM:ss',
-    ignore: 'pid,hostname'
-  }
-};
+// Writes raw JSON to file, good for production log files that will be parsed by log management tools
+function jsonFileTransport(filepath) {
+	return fs.createWriteStream(filepath, { flags: 'a' });
+}
 
 // Production: JSON to console + files
+// fix , using poroduction now, should change to dev , unsure if trace logs in prod should also be in seperate files
 const isProduction = process.env.NODE_ENV === 'production';
 
-// Main application logger (goes to console + app.log)
-export const logger = pino(
-  baseConfig,
-  isProduction
-    ? pino.multistream([
-        { stream: process.stdout },
-        { stream: fs.createWriteStream(path.join(logsDir, 'app.log'), { flags: 'a' }) }
-      ])
-    : pino.transport(devTransport)
-);
+function createLogger(name, filename) {
+	const usePretty = process.env.LOG_PRETTY === 'true';
+	const fileTransport = usePretty ? prettyFileTransport : jsonFileTransport;
 
-// Scraping-specific logger (goes to console + scraping.log)
-export const scrapingLogger = pino(
-  { ...baseConfig, name: 'DataHarvester' },
-  isProduction
-    ? pino.multistream([
-        { stream: process.stdout },
-        { stream: fs.createWriteStream(path.join(logsDir, 'scraping.log'), { flags: 'a' }) }
-      ])
-    : pino.transport(devTransport)
-);
+	const streams = [
+		{ stream: fileTransport(path.join(logsDir, filename)) }
+	];
 
-// Database logger (goes to console + database.log)
-export const dbLogger = pino(
-  { ...baseConfig, name: 'database' },
-  isProduction
-    ? pino.multistream([
-        { stream: process.stdout },
-        { stream: fs.createWriteStream(path.join(logsDir, 'database.log'), { flags: 'a' }) }
-      ])
-    : pino.transport(devTransport)
-);
+	if (isProduction) {
+		streams.push({
+			stream: pino.transport({
+				target: 'pino-pretty',
+				options: {
+					colorize: true,
+					translateTime: 'HH:mm:ss',
+					ignore: 'pid,hostname'
+				}
+			})
+		},
+		{
+			level: 'trace',
+			stream: fileTransport(path.join(logsDir, `${filename}-trace.log`))
+		},
+		{
+			level: 'error',
+			stream: fileTransport(path.join(logsDir, 'error.log'))
+		}
+	);
+	} else {
+		streams.push({ stream: process.stdout });
+	}
+	return pino({ ...baseConfig, name }, pino.multistream(streams));
+}
 
-// Error logger (only errors, goes to error.log)
-export const errorLogger = pino(
-  { ...baseConfig, level: 'error', name: 'error' },
-  pino.multistream([
-    { stream: process.stderr },
-    { stream: fs.createWriteStream(path.join(logsDir, 'error.log'), { flags: 'a' }) }
-  ])
+
+export const logger = createLogger('app', 'app.log');
+export const scrapingLogger = createLogger('DataHarvester', 'harvester.log');
+export const dbLogger = createLogger('database', 'database.log');
+
+export const errorLogger = pino({ ...baseConfig, level: 'error', name: 'error' },
+	pino.multistream([
+		{ stream: process.stderr },
+		{ stream: fs.createWriteStream(path.join(logsDir, 'error.log'), { flags: 'a' }) }
+	])
 );

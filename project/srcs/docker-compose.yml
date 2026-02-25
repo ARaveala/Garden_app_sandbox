@@ -37,7 +37,9 @@ services:
       - ./logs/harvester:/app/logs
     environment:
       - DB_HOST=db
-      - LOG_LEVEL=info
+      - LOG_LEVEL=${LOG_LEVEL}
+      - NODE_ENV=${NODE_ENV}
+      - LOG_PRETTY=${LOG_PRETTY}
       - DB_NAME=${MYSQL_DATABASE}
       - DB_USER=${MYSQL_USER}
       - DB_PASS=${MYSQL_PASSWORD}

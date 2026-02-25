@@ -1,0 +1,322 @@
+{"level":"info","time":1772014291870,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"========================================"}
+{"level":"info","time":1772014291870,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":1772014291870,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"========================================"}
+{"level":"info","time":1772014291870,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":1772014291883,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":1772014291884,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":1772014291884,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":1772014291884,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":1772014291884,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":1772014291884,"pid":1,"hostname":"d1fb3ffb695d","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":1772014296145,"pid":1,"hostname":"d1fb3ffb695d","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":1772014296145,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":1772014296145,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":1772014296145,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014297111,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":1772014297127,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014297689,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":1772014297705,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":1772014297706,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014298223,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":1772014298240,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014298755,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":1772014298771,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":1772014298772,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014299402,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":1772014299419,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014299968,"pid":1,"hostname":"d1fb3ffb695d","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":1772014299984,"pid":1,"hostname":"d1fb3ffb695d","name":"app","msg":"========================================"}
+{"level":"info","time":1772014500010,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"========================================"}
+{"level":"info","time":1772014500011,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":1772014500011,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"========================================"}
+{"level":"info","time":1772014500011,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":1772014500029,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":1772014500029,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":1772014500029,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":1772014500029,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":1772014500030,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":1772014500030,"pid":1,"hostname":"e78458f48cad","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":1772014504486,"pid":1,"hostname":"e78458f48cad","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":1772014504486,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":1772014504486,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":1772014504486,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014505486,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":1772014505502,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014506012,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":1772014506028,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":1772014506028,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014506523,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":1772014506539,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014507017,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":1772014507032,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":1772014507032,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":1772014507581,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":1772014507597,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":1772014508144,"pid":1,"hostname":"e78458f48cad","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":1772014508160,"pid":1,"hostname":"e78458f48cad","name":"app","msg":"========================================"}
+{"level":30,"time":"2026-02-25T10:16:59.314Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"========================================"}
+{"level":30,"time":"2026-02-25T10:16:59.314Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":30,"time":"2026-02-25T10:16:59.314Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"========================================"}
+{"level":30,"time":"2026-02-25T10:16:59.314Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"Testing database connection..."}
+{"level":30,"time":"2026-02-25T10:16:59.339Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"✓ Database connection established"}
+{"level":30,"time":"2026-02-25T10:16:59.339Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"Loading configuration..."}
+{"level":30,"time":"2026-02-25T10:16:59.340Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"✓ Configuration loaded"}
+{"level":30,"time":"2026-02-25T10:16:59.340Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":30,"time":"2026-02-25T10:16:59.340Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":30,"time":"2026-02-25T10:16:59.340Z","pid":1,"hostname":"59e4f504ea11","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":30,"time":"2026-02-25T10:17:03.236Z","pid":1,"hostname":"59e4f504ea11","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":30,"time":"2026-02-25T10:17:03.236Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"Starting data collection..."}
+{"level":30,"time":"2026-02-25T10:17:03.236Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":30,"time":"2026-02-25T10:17:03.236Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":40,"time":"2026-02-25T10:17:13.723Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABAM","type":"traits","msg":"Continuing to next item..."}
+{"level":30,"time":"2026-02-25T10:17:13.724Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":30,"time":"2026-02-25T10:17:15.141Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":30,"time":"2026-02-25T10:17:15.158Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":30,"time":"2026-02-25T10:17:15.158Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":30,"time":"2026-02-25T10:17:15.749Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":30,"time":"2026-02-25T10:17:15.766Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":30,"time":"2026-02-25T10:17:16.276Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":30,"time":"2026-02-25T10:17:16.292Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":30,"time":"2026-02-25T10:17:16.292Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":30,"time":"2026-02-25T10:17:16.806Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":30,"time":"2026-02-25T10:17:16.821Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":30,"time":"2026-02-25T10:17:17.318Z","pid":1,"hostname":"59e4f504ea11","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":30,"time":"2026-02-25T10:17:17.334Z","pid":1,"hostname":"59e4f504ea11","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:19:28.199Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:19:28.199Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T10:19:28.199Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:19:28.199Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T10:19:28.216Z","pid":1,"hostname":"90b81ba7d19d","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T10:19:32.140Z","pid":1,"hostname":"90b81ba7d19d","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T10:19:32.140Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T10:19:32.140Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T10:19:32.140Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:19:33.055Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T10:19:33.072Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:19:33.577Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:19:33.593Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T10:19:33.593Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:19:34.072Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T10:19:34.089Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:19:34.583Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:19:34.600Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T10:19:34.600Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:19:35.112Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T10:19:35.127Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:19:35.629Z","pid":1,"hostname":"90b81ba7d19d","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:19:35.645Z","pid":1,"hostname":"90b81ba7d19d","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:35:22.551Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:35:22.552Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T10:35:22.552Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:35:22.552Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T10:35:22.567Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T10:35:22.567Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T10:35:22.567Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T10:35:22.567Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T10:35:22.567Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T10:35:22.568Z","pid":1,"hostname":"f098e3befeb9","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T10:35:27.120Z","pid":1,"hostname":"f098e3befeb9","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T10:35:27.120Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T10:35:27.120Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T10:35:27.120Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:35:28.017Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T10:35:28.035Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:35:28.546Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:35:28.562Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T10:35:28.562Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:35:29.059Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T10:35:29.076Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:35:29.590Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:35:29.607Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T10:35:29.607Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:35:30.122Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T10:35:30.139Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:35:30.694Z","pid":1,"hostname":"f098e3befeb9","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:35:30.711Z","pid":1,"hostname":"f098e3befeb9","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:36:41.858Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:36:41.859Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T10:36:41.859Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:36:41.859Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T10:36:41.873Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T10:36:41.874Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T10:36:41.874Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T10:36:41.874Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T10:36:41.874Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T10:36:41.874Z","pid":1,"hostname":"10e543d16e6a","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T10:36:46.554Z","pid":1,"hostname":"10e543d16e6a","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T10:36:46.554Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T10:36:46.554Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T10:36:46.554Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:36:47.494Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T10:36:47.511Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:36:48.022Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:36:48.038Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T10:36:48.039Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:36:48.531Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T10:36:48.548Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:36:49.047Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:36:49.064Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T10:36:49.064Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:36:49.574Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T10:36:49.591Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:36:50.089Z","pid":1,"hostname":"10e543d16e6a","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:36:50.106Z","pid":1,"hostname":"10e543d16e6a","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:54:14.997Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:54:14.997Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T10:54:14.997Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T10:54:14.997Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T10:54:15.013Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T10:54:15.014Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T10:54:15.014Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T10:54:15.014Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T10:54:15.014Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T10:54:15.014Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T10:54:19.340Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T10:54:19.340Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T10:54:19.340Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T10:54:19.340Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:54:20.284Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T10:54:20.300Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:54:20.818Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:54:20.834Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T10:54:20.835Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:54:21.360Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T10:54:21.377Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:54:21.869Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:54:21.885Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T10:54:21.886Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T10:54:22.430Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T10:54:22.445Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T10:54:22.941Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T10:54:22.958Z","pid":1,"hostname":"66a8dac3cbfb","name":"app","msg":"========================================"}
+{"level":"info","time":"2026-02-25T11:01:48.440Z","msg":"========================================"}
+{"level":"info","time":"2026-02-25T11:01:48.441Z","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T11:01:48.441Z","msg":"========================================"}
+{"level":"info","time":"2026-02-25T11:01:48.441Z","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T11:01:48.455Z","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T11:01:48.455Z","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T11:01:48.456Z","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T11:01:48.456Z","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T11:01:48.456Z","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T11:01:48.456Z","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T11:01:52.551Z","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T11:01:52.551Z","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T11:01:52.551Z","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T11:01:52.551Z","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:01:53.615Z","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T11:01:53.632Z","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:01:54.119Z","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:01:54.136Z","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T11:01:54.136Z","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:01:54.629Z","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T11:01:54.645Z","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:01:55.136Z","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:01:55.153Z","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T11:01:55.153Z","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:01:55.667Z","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T11:01:55.683Z","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:01:56.209Z","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:01:56.225Z","msg":"========================================"}
+[2026-02-25 11:03:06] INFO: ========================================
+[2026-02-25 11:03:06] INFO: Starting Plant Data Harvester
+[2026-02-25 11:03:06] INFO: ========================================
+[2026-02-25 11:03:06] INFO: Testing database connection...
+[2026-02-25 11:03:06] INFO: ✓ Database connection established
+[2026-02-25 11:03:06] INFO: Loading configuration...
+[2026-02-25 11:03:06] INFO: ✓ Configuration loaded
+[2026-02-25 11:03:06] INFO: Initializing USDA DataHarvester...
+[2026-02-25 11:03:06] INFO: ✓ DataHarvester initialized
+[2026-02-25 11:03:06] INFO: Fetching plant list...
+    limit: 3
+[2026-02-25 11:03:10] INFO: ✓ Plant list retrieved
+    count: 3
+    plants: [
+      "ABAM",
+      "ABBA",
+      "ABCO"
+    ]
+[2026-02-25 11:03:10] INFO: Starting data collection...
+[2026-02-25 11:03:10] INFO: Processing plant: ABAM
+    plant: "ABAM"
+[2026-02-25 11:03:10] INFO: Scraping traits...
+    plant: "ABAM"
+    type: "traits"
+[2026-02-25 11:03:11] INFO: ⊘ ABAM - traits already exists
+    plant: "ABAM"
+    type: "traits"
+[2026-02-25 11:03:11] INFO: Scraping characteristics...
+    plant: "ABAM"
+    type: "characteristics"
+[2026-02-25 11:03:11] INFO: ⊘ ABAM - characteristics already exists
+    plant: "ABAM"
+    type: "characteristics"
+[2026-02-25 11:03:11] INFO: Processing plant: ABBA
+    plant: "ABBA"
+[2026-02-25 11:03:11] INFO: Scraping traits...
+    plant: "ABBA"
+    type: "traits"
+[2026-02-25 11:03:12] INFO: ⊘ ABBA - traits already exists
+    plant: "ABBA"
+    type: "traits"
+[2026-02-25 11:03:12] INFO: Scraping characteristics...
+    plant: "ABBA"
+    type: "characteristics"
+[2026-02-25 11:03:12] INFO: ⊘ ABBA - characteristics already exists
+    plant: "ABBA"
+    type: "characteristics"
+[2026-02-25 11:03:12] INFO: Processing plant: ABCO
+    plant: "ABCO"
+[2026-02-25 11:03:12] INFO: Scraping traits...
+    plant: "ABCO"
+    type: "traits"
+[2026-02-25 11:03:13] INFO: ⊘ ABCO - traits already exists
+    plant: "ABCO"
+    type: "traits"
+[2026-02-25 11:03:13] INFO: Scraping characteristics...
+    plant: "ABCO"
+    type: "characteristics"
+[2026-02-25 11:03:13] INFO: ⊘ ABCO - characteristics already exists
+    plant: "ABCO"
+    type: "characteristics"
+[2026-02-25 11:03:13] INFO: ========================================
+[2026-02-25 11:03:13] INFO: Harvesting Complete
+[2026-02-25 11:03:13] INFO: Summary
+    harvestd: 6
+    inserted: 0
+    skipped: 6
+    errors: 0
+[2026-02-25 11:03:13] INFO: ========================================
+[2026-02-25 11:03:13] INFO: Exiting successfully
+{"level":"info","time":"2026-02-25T11:12:18.087Z","msg":"========================================"}
+{"level":"info","time":"2026-02-25T11:12:18.088Z","msg":"Starting Plant Data Harvester"}
+{"level":"info","time":"2026-02-25T11:12:18.088Z","msg":"========================================"}
+{"level":"info","time":"2026-02-25T11:12:18.088Z","msg":"Testing database connection..."}
+{"level":"info","time":"2026-02-25T11:12:18.102Z","msg":"✓ Database connection established"}
+{"level":"info","time":"2026-02-25T11:12:18.102Z","msg":"Loading configuration..."}
+{"level":"info","time":"2026-02-25T11:12:18.102Z","msg":"✓ Configuration loaded"}
+{"level":"info","time":"2026-02-25T11:12:18.103Z","msg":"Initializing USDA DataHarvester..."}
+{"level":"info","time":"2026-02-25T11:12:18.103Z","msg":"✓ DataHarvester initialized"}
+{"level":"info","time":"2026-02-25T11:12:18.103Z","limit":3,"msg":"Fetching plant list..."}
+{"level":"info","time":"2026-02-25T11:12:21.805Z","count":3,"plants":["ABAM","ABBA","ABCO"],"msg":"✓ Plant list retrieved"}
+{"level":"info","time":"2026-02-25T11:12:21.805Z","msg":"Starting data collection..."}
+{"level":"info","time":"2026-02-25T11:12:21.805Z","plant":"ABAM","msg":"Processing plant: ABAM"}
+{"level":"info","time":"2026-02-25T11:12:21.805Z","plant":"ABAM","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:12:22.718Z","plant":"ABAM","type":"traits","msg":"⊘ ABAM - traits already exists"}
+{"level":"info","time":"2026-02-25T11:12:22.735Z","plant":"ABAM","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:12:23.230Z","plant":"ABAM","type":"characteristics","msg":"⊘ ABAM - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:12:23.246Z","plant":"ABBA","msg":"Processing plant: ABBA"}
+{"level":"info","time":"2026-02-25T11:12:23.246Z","plant":"ABBA","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:12:23.785Z","plant":"ABBA","type":"traits","msg":"⊘ ABBA - traits already exists"}
+{"level":"info","time":"2026-02-25T11:12:23.801Z","plant":"ABBA","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:12:24.306Z","plant":"ABBA","type":"characteristics","msg":"⊘ ABBA - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:12:24.322Z","plant":"ABCO","msg":"Processing plant: ABCO"}
+{"level":"info","time":"2026-02-25T11:12:24.323Z","plant":"ABCO","type":"traits","msg":"Scraping traits..."}
+{"level":"info","time":"2026-02-25T11:12:24.853Z","plant":"ABCO","type":"traits","msg":"⊘ ABCO - traits already exists"}
+{"level":"info","time":"2026-02-25T11:12:24.869Z","plant":"ABCO","type":"characteristics","msg":"Scraping characteristics..."}
+{"level":"info","time":"2026-02-25T11:12:25.424Z","plant":"ABCO","type":"characteristics","msg":"⊘ ABCO - characteristics already exists"}
+{"level":"info","time":"2026-02-25T11:12:25.440Z","msg":"========================================"}

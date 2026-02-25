@@ -94,9 +94,7 @@ int main() {
         std::cout << "Source: " << row[1] << "\n";
         std::cout << "Plant: " << row[2] << "\n";
         std::cout << "Data Type: " << row[3] << "\n";
-        printPrettyJSON(row[4]);
-		//std::cout << "Raw JSON Data:\n";
-		//std::cout << "JSON: " << row[4] << "\n";
+        //printPrettyJSON(row[4]);
         std::cout << "Timestamp: " << row[5] << "\n";
     }
 

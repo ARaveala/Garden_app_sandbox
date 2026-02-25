@@ -4,3 +4,16 @@ Our plant information, including the distribution maps, lists, and text, is not 
 free for any use. Please cite the PLANTS Database as:
 USDA, NRCS. [YEAR]. The PLANTS Database (http://plants.usda.gov, 2/25/2021[DAY MONTH
 YEAR]). National Plant Data Team, Greensboro, NC USA.
+
+For showcase/portfolio (now):
+
+Use whatever data you want
+Mark it clearly: "Prototype - not for commercial use"
+Shows proof of concept
+
+Before commercial launch:
+
+Audit all data sources
+Request commercial licenses where needed
+Replace restricted data with open alternatives
+Consult actual IP lawyer (€500-1000, worth it)

@@ -31,6 +31,9 @@ enter-user:
 enter-mariadb:
 	docker exec -it mariadb sh
 
+harvester_up:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d harvester db
+
 user_up:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d user db
 # Show status of containers managed by docker-compose (only running)
@@ -44,6 +47,7 @@ restart:
 clean_redo: down fclean 
 	rm -rf srcs/requirements/db_data/*
 	make all
+
 # Run Docker Container new and not tested yet
 #run:
 #    docker run --env-file /path/to/your/.env -d --name wordpress-container wordpress

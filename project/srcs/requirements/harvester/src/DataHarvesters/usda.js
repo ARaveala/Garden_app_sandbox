@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import {BaseDataHarvester} from "./base.js";
-import { scrapingLogger } from '#utils/logger.js';
-//import { profile } from "console";
+import { scrapingLogger} from '#utils/logger.js';
+
 
 function extractTaxonomy(ancestors) {
   if (!ancestors || !Array.isArray(ancestors)) return {};
@@ -64,7 +64,7 @@ export class USDADataHarvester extends BaseDataHarvester {
 
 		// get id for characteristics call
 		const plantId = profileData.Id;
-		scrapingLogger.info({ identifier, hasProfile: !!profileData }, 'Profile data fetched');
+		scrapingLogger.trace({ identifier, hasProfile: !!profileData }, 'Profile data fetched');
 		// Call 2: Get characteristics using ID from Call 1
 		const characteristicsUrl = this.buildURl('plant_characteristics_api', { symbol: plantId });
 		const characteristicsResponse = await fetch(characteristicsUrl);
@@ -72,14 +72,14 @@ export class USDADataHarvester extends BaseDataHarvester {
 
 		if (!characteristicsResponse.ok) {
 			scrapingLogger.warn({ identifier }, 'Characteristics not available');
-		// Some plants might not have characteristics - that's OK
 		}
 
+		// Some plants might not have characteristics - that's OK
 		const characteristicsData = characteristicsResponse.ok 
 			? await characteristicsResponse.json() 
 			: null;
 
-		scrapingLogger.info({ identifier, hasCharacteristics: !!characteristicsData }, 'Data fetched');
+		scrapingLogger.trace({ identifier, hasCharacteristics: !!characteristicsData }, 'Data fetched');
 		console.log('DEBUG profileData:', JSON.stringify(profileData).substring(0, 500));
 		console.log('DEBUG characteristicsData:', characteristicsData ? 'exists' : 'null');
 
@@ -90,14 +90,7 @@ export class USDADataHarvester extends BaseDataHarvester {
 				...cleanProfile,
 			taxonomy: profileData.taxonomy
 			},
-			//symbol: profileData.Symbol,
-			//scientificName: profileData.ScientificName,
-			//commonName: profileData.CommonName,
-			//group: profileData.Group,
-			//durations: profileData.Durations || [],
-			//growthHabits: profileData.GrowthHabits || [],
-			//nativeStatuses: profileData.NativeStatuses || [],
-	
+
     // Keep characteristics as-is for now (cleaner will process later)
 			characteristics: characteristicsData
   		};
