@@ -9,6 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // should logsDir dir path be configurable via env ?
 const logsDir = process.env.LOGS_DIR || '/app/logs';
 
+/**
+ * Base logger configuration, shared across all loggers
+ */
 const baseConfig = {
 	level: process.env.LOG_LEVEL || 'info',
 	timestamp: pino.stdTimeFunctions.isoTime,  // ISO 8601 format
@@ -20,7 +23,16 @@ const baseConfig = {
 	}
 };
 
-// Shows jason output in a more readble form, good for development and debugging, but not ideal for production log files
+/**
+ * Provides a transport that writes pretty-printed logs to a file. This is useful for development and debugging, 
+ * but may not be ideal for production. Log files should be parsed by log management tools.
+ * The transport uses the 'pino-pretty' module to format the logs in a more human readable way,
+ * allowing user to see json output in json format.
+ * 
+ * @param {*} filepath 
+ * @returns format
+ */
+
 function  prettyFileTransport(filepath) {
 	return pino.transport({
 		target: 'pino-pretty',
@@ -34,7 +46,13 @@ function  prettyFileTransport(filepath) {
 	});
 }
 
-// Writes raw JSON to file, good for production log files that will be parsed by log management tools
+/**
+ * Writes raw JSON to file, good for production log files that will be parsed by log management tools.
+ * 
+ * @param {*} filepath 
+ * @returns stream
+ */
+
 function jsonFileTransport(filepath) {
 	return fs.createWriteStream(filepath, { flags: 'a' });
 }
@@ -43,6 +61,17 @@ function jsonFileTransport(filepath) {
 // fix , using poroduction now, should change to dev , unsure if trace logs in prod should also be in seperate files
 const isProduction = process.env.NODE_ENV === 'production';
 
+/**
+ * Creates a logger instance with the specified name and filename.
+ * In production, it writes JSON logs to both console and files, toggle can be found in .env.
+ * 
+ * log.trace will write to a seperate file log.log-trace.log, and log.error will write to error.log, while all logs will be written to filename.log
+ * In development, it writes pretty printed logs to files, toggle can also be found in .env.
+ * 
+ * @param {*} name to distinguish loggers, should be the name of the module using the logger, e.g. 'app', 'DataHarvester', 'database'
+ * @param {*} filename filename.log, should be the name of the module using the logger, e.g. 'app.log', 'harvester.log', 'database.log'
+ * @returns logger instance
+ */
 function createLogger(name, filename) {
 	const usePretty = process.env.LOG_PRETTY === 'true';
 	const fileTransport = usePretty ? prettyFileTransport : jsonFileTransport;
