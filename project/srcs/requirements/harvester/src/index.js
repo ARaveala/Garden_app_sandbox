@@ -64,7 +64,7 @@ async function main() {
     // 6. Harvest each plant, this needs adjustment, usda collects both at the same time now
     logger.info('Starting data collection...');
     
-    let totalHarvestd = 0;
+    let totalHarvested = 0;
     let totalInserted = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
@@ -77,7 +77,7 @@ async function main() {
           // Harvest
           logger.info({ plant: symbol, type: dataType }, `Scraping ${dataType}...`);
           const result = await DataHarvester.harvestPlantData(symbol, { dataType });
-          totalHarvestd++;
+          totalHarvested++;
           
           // Insert into database
           const inserted = await insertHarvest(result);
@@ -114,7 +114,7 @@ async function main() {
     logger.info('========================================');
     logger.info('Harvesting Complete');
     logger.info({ 
-      harvestd: totalHarvestd,
+      harvestd: totalHarvested,
       inserted: totalInserted,
       skipped: totalSkipped,
       errors: totalErrors

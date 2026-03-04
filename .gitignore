@@ -4,6 +4,6 @@
 project/srcs/requirements/db_data
 project/srcs/requirements/harvester/node_modules
 project/srcs/logs
-project/.env
+project/srcs/.env
 
 personal_notes/*

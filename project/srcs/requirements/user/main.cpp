@@ -1,13 +1,17 @@
-
-/**
- * @brief reference code for connecting to MySQL database and querying data 
-*/
 #include <iostream>
 #include <mysql/mysql.h>
 #include <cstdlib>
 #include <string>
 #include <iomanip>
 
+/**
+ * @brief Pretty prints a JSON string with proper indentation and formatting to console.
+ * Handles nested objects and arrays, and ensures that string values are not affected by formatting.
+ * 
+ * Pretty loging does something similiar, this may become redundant, but it is useful for debugging and development to have a simple way to visualize the JSON data in the console without needing to rely on external tools or libraries.
+ * 
+ * @param json object to be pretty printed
+ */
 void printPrettyJSON(const std::string& json) {
     int indent = 0;
     bool inString = false;
@@ -38,6 +42,21 @@ void printPrettyJSON(const std::string& json) {
     }
     std::cout << "\n";
 }
+
+/**
+ * @brief Main function to connect to MySQL database and retrieve raw_harvest data
+ * 
+ * This main is a placeholder for testing the database connection and retrieval of data from the raw_harvest table.
+ * It connects to the database using credentials from environment variables, executes a query to get the most recent record,
+ * and prints the results to the console.
+ * 
+ * User in the future will likley not interact with the databse directly, instead it will feed the data into the calculation pipeline, and recieve clean output.
+ * This is useful for testing and debugging the database connection and data retrieval during development.
+ * 
+ * The JSON data is printed in a pretty format for easier readability during development and debugging.
+ * 
+ * @return int Exit status of the program 0 SUCCESS, 1 FAILURE
+ */
 
 int main() {
     MYSQL *conn = mysql_init(nullptr);

@@ -27,11 +27,8 @@ export class USDADataHarvester extends BaseDataHarvester {
 		scrapingLogger.info({ url }, 'Calling API');
   
 		const response = await fetch(url);
-		console.log('Response status:', response.status);
 		const plants = await response.json();
 
-		console.log('Response length:', JSON.stringify(plants).length);
-		console.log('First 500 chars:', JSON.stringify(plants).substring(0, 500));
   
 		const plantSymbols = plants.map(plant => plant.symbol)
 			.filter(Boolean)
@@ -79,8 +76,6 @@ export class USDADataHarvester extends BaseDataHarvester {
 			: null;
 
 		scrapingLogger.trace({ identifier, hasCharacteristics: !!characteristicsData }, 'Data fetched');
-		console.log('DEBUG profileData:', JSON.stringify(profileData).substring(0, 500));
-		console.log('DEBUG characteristicsData:', characteristicsData ? 'exists' : 'null');
 
   // Minimal cleanup
 		const { Ancestors, ...cleanProfile } = profileData;
