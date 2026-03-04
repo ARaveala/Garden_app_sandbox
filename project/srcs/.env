@@ -1,5 +1,0 @@
-MYSQL_ROOT_PASSWORD=testpasswordroot
-MYSQL_DATABASE=plant_db
-MYSQL_USER=testuser
-MYSQL_PASSWORD=testpassword
-DB_VOLUME_PATH=/home/shaboom/garden_sandbox/project/srcs/requirements/db_data
