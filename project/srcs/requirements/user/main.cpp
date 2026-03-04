@@ -1,27 +1,62 @@
 #include <iostream>
 #include <mysql/mysql.h>
 #include <cstdlib>
-
-//int main() {
-//	// Initialize MySQL connection
-//	MYSQL *conn;
-//	conn = mysql_init(NULL);
-//	
-//	// Connect to the database
-//	if (mysql_real_connect(conn, "localhost", "root", "password", "testdb", 0, NULL, 0)) {
-//		std::cout << "Connected to MySQL database successfully!" << std::endl;
-//	} else {
-//		std::cerr << "Failed to connect to MySQL database: " << mysql_error(conn) << std::endl;
-//	}
-//	mysql_close(conn);
-//}
+#include <string>
+#include <iomanip>
 
 /**
- * @brief reference code for connecting to MySQL database and querying data 
-*/
-#include <iostream>
-#include <mysql/mysql.h>
-#include <cstdlib>
+ * @brief Pretty prints a JSON string with proper indentation and formatting to console.
+ * Handles nested objects and arrays, and ensures that string values are not affected by formatting.
+ * 
+ * Pretty loging does something similiar, this may become redundant, but it is useful for debugging and development to have a simple way to visualize the JSON data in the console without needing to rely on external tools or libraries.
+ * 
+ * @param json object to be pretty printed
+ */
+void printPrettyJSON(const std::string& json) {
+    int indent = 0;
+    bool inString = false;
+    
+    for (size_t i = 0; i < json.length(); i++) {
+        char c = json[i];
+        
+        // Track if we're inside a string
+        if (c == '"' && (i == 0 || json[i-1] != '\\')) {
+            inString = !inString;
+        }
+        
+        if (!inString) {
+            if (c == '{' || c == '[') {
+                std::cout << c << "\n" << std::string(++indent * 2, ' ');
+            } else if (c == '}' || c == ']') {
+                std::cout << "\n" << std::string(--indent * 2, ' ') << c;
+            } else if (c == ',') {
+                std::cout << c << "\n" << std::string(indent * 2, ' ');
+            } else if (c == ':') {
+                std::cout << c << " ";
+            } else if (c != ' ' && c != '\n' && c != '\r' && c != '\t') {
+                std::cout << c;
+            }
+        } else {
+            std::cout << c;
+        }
+    }
+    std::cout << "\n";
+}
+
+/**
+ * @brief Main function to connect to MySQL database and retrieve raw_harvest data
+ * 
+ * This main is a placeholder for testing the database connection and retrieval of data from the raw_harvest table.
+ * It connects to the database using credentials from environment variables, executes a query to get the most recent record,
+ * and prints the results to the console.
+ * 
+ * User in the future will likley not interact with the databse directly, instead it will feed the data into the calculation pipeline, and recieve clean output.
+ * This is useful for testing and debugging the database connection and data retrieval during development.
+ * 
+ * The JSON data is printed in a pretty format for easier readability during development and debugging.
+ * 
+ * @return int Exit status of the program 0 SUCCESS, 1 FAILURE
+ */
 
 int main() {
     MYSQL *conn = mysql_init(nullptr);
@@ -64,7 +99,7 @@ int main() {
         std::cout << "Source: " << row[1] << "\n";
         std::cout << "Plant: " << row[2] << "\n";
         std::cout << "Data Type: " << row[3] << "\n";
-        std::cout << "JSON: " << row[4] << "\n";
+        //printPrettyJSON(row[4]);
         std::cout << "Timestamp: " << row[5] << "\n";
     }
 

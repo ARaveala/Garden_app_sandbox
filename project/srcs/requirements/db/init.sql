@@ -9,5 +9,7 @@ CREATE TABLE IF NOT EXISTS raw_harvest
     plant_identifier VARCHAR(255) NOT NULL, -- or  if i want to limit the length of the plant identifier
     data_type VARCHAR(255) NOT NULL, -- or VARCHAR(255) if i want to limit the length of the data type
 	raw_json JSON, -- or BLOB if i want to store the raw json as a blob or JSON if i want to store it as text
-	harvested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	harvested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	-- simple unique constraint to prevent duplicate entries for the same plant and data type from the same source at the same time
+	CONSTRAINT unique_harvest UNIQUE (source, plant_identifier, data_type)
 );

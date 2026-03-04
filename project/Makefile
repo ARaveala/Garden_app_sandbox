@@ -1,97 +1,119 @@
 DOCKER_COMPOSE_FILE := srcs/docker-compose.yml
 
-##### docker exec -it plant_db mysql -u plantuser -pplantpass plants -e "SELECT * FROM raw_harvest;"
-##to vberify data in db 
+# Default target — show help when running bare make
+.DEFAULT_GOAL := help
 
-##setup:
-##	mkdir -p ./volumes/db-data
-##	chmod 755 ./volumes/db-data
-
-# Target to create the custom network
-#start-network:
-#	@docker network inspect custom-network >/dev/null 2>&1 || docker network create inceptionnet
-# Build the Docker images defined in the Dockerfile
+# Build all Docker images
 build:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) build
 
-# Start services defined in docker-compose.yml added as fail safe to start network
-up: #start-network
+# Start all containers (detached)
+up:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d
 
-# Stop and remove services, cleanup
+# Stop and remove containers
 down:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) down
 
-enter-harvester:
-	docker exec -it harvester sh
-
-enter-user:
-	docker exec -it user sh
-
-enter-mariadb:
-	docker exec -it mariadb sh
-
-# Show status of containers managed by docker-compose (only running)
-ps:
-	docker-compose -f $(DOCKER_COMPOSE_FILE) ps
+# Build and start, then show status
+all: build up ps
 
 # Restart all services
 restart:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) restart
 
-clean_redo: down fclean 
-	rm -rf srcs/requirements/db_data/*
-	make all
-# Run Docker Container new and not tested yet
-#run:
-#    docker run --env-file /path/to/your/.env -d --name wordpress-container wordpress
+# Show status of running containers
+ps:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) ps
 
-# Run tests if any are defined
-#test:
-#	docker-compose -f $(DOCKER_COMPOSE_FILE) run --rm test
-
-# View logs of the running services in real time
+# Stream logs from all services
 logs:
 	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f
 
-# Clean dangling images and unused volumes
+# Stream logs from harvester only
+logs-harvester:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f harvester
+
+# Stream logs from database only
+logs-db:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f db
+
+# Shell into harvester container
+enter-harvester:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) exec harvester sh
+
+# Shell into user container
+enter-user:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) exec user sh
+
+# Shell into database container
+enter-db:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) exec db sh
+
+# Show most recent entries in raw_harvest table
+db-query:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) exec db \
+		mariadb -u$${MYSQL_USER} -p$${MYSQL_PASSWORD} $${MYSQL_DATABASE} \
+		-e "SELECT id, source, plant_identifier, data_type, harvested_at FROM raw_harvest ORDER BY id DESC LIMIT 10;"
+
+# Start harvester and database only
+harvester-up:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d harvester db
+
+# Start user display and database only
+user-up:
+	docker-compose -f $(DOCKER_COMPOSE_FILE) up -d user db
+
+# Remove dangling images and unused volumes
 clean:
 	docker system prune -f --volumes
 
-# View logs for the Nginx service in real time
-##logs-nginx:
-##	docker-compose -f $(DOCKER_COMPOSE_FILE) logs -f nginx
-
-
-# Full clean: includes `clean` and removes images and stopped containers
+# Full clean — remove all stopped containers and images
 fclean: clean
 	@echo "Removing all stopped containers..."
 	docker container prune -f
 	@echo "Removing all Docker images..."
 	docker image prune -a -f
-# Clear logs
-##clear-logs:
-##	docker exec -it $(docker ps -q -f "name=nginx") sh -c 'cd /var/log/nginx && 
 
-# Default target, builds and starts services, and shows status
-all: build up ps
+# Tear down, full clean, wipe db volume, rebuild from scratch
+reset: down fclean
+	rm -rf srcs/requirements/db_data/*
+	$(MAKE) all
 
-# Help message
+# Show available targets
 help:
+	@echo ""
 	@echo "Usage: make [target]"
 	@echo ""
-	@echo "Targets:"
-	@echo "  build	 - Build Docker images"
-	@echo "  up		- Start Docker containers"
-	@echo "  down	  - Stop Docker containers"
-	@echo "  ps		- Show Docker containers status"
-	@echo "  restart   - Restart Docker containers"
-	@echo "  test	  - Run tests (if defined)"
-	@echo "  logs	  - Show Docker containers logs"
-	@echo "  clean	 - Remove dangling images and unused volumes"
-	@echo "  fclean	- Full clean: remove all stopped containers and images"
-	@echo "  all	   - Build, start, and show status of Docker containers"
-	@echo "  help	  - Show this help message"
+	@echo "Core:"
+	@echo "  all              Build, start, and show status"
+	@echo "  build            Build Docker images"
+	@echo "  up               Start all containers"
+	@echo "  down             Stop and remove containers"
+	@echo "  restart          Restart all services"
+	@echo "  ps               Show container status"
+	@echo ""
+	@echo "Logs:"
+	@echo "  logs             Stream logs from all services"
+	@echo "  logs-harvester   Stream harvester logs only"
+	@echo "  logs-db          Stream database logs only"
+	@echo ""
+	@echo "Debug:"
+	@echo "  enter-harvester  Shell into harvester container"
+	@echo "  enter-user       Shell into user container"
+	@echo "  enter-db         Shell into database container"
+	@echo "  db-query         Show latest 10 rows in raw_harvest"
+	@echo ""
+	@echo "Selective start:"
+	@echo "  harvester-up     Start harvester + database only"
+	@echo "  user-up          Start user display + database only"
+	@echo ""
+	@echo "Cleanup:"
+	@echo "  clean            Remove dangling images and unused volumes"
+	@echo "  fclean           Full clean — all containers and images"
+	@echo "  reset            Full teardown, wipe data, rebuild from scratch"
+	@echo ""
 
-.PHONY: build up down ps restart test logs clean  all help
-#	@echo "  logs-nginx - Show logs for Nginx service"
+.PHONY: build up down all restart ps logs logs-harvester logs-db \
+        enter-harvester enter-user enter-db db-query \
+        harvester-up user-up clean fclean reset help

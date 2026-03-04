@@ -1,108 +1,91 @@
-# Garden sandbox
+# Garden Sandbox
 
-Plant Growth Data Harvester
-A distributed data collection and processing system for gathering plant growth information from multiple sources to enable accurate, location-specific growing predictions.
-Current Status: Phase 1 Complete ✓
-Successfully implemented basic data pipeline: scrape → store → display
-Architecture
-Container 1: Harvester (Node.js + Playwright)
+A multi-container data pipeline for collecting and storing plant growth data from external sources.
+The long term goal is a location aware plant predictive modeling for plant growth/care, this pipeline is the data foundation for that.
+Built with Docker, Node.js, and C++.
 
-Web scraping from sources without public APIs
-Currently targeting USDA Plants Database
-Designed for extensibility to additional sources
+This is an active prototype — Phase 1 is complete and working. See [ROADMAP.md](./ROADMAP.md) for planned development.
 
-Container 2: Database (MariaDB)
+---
 
-Raw data storage with JSON flexibility
-Persistent volume management
-Initialization scripts for schema setup
+## Architecture
 
-Container 3: User Display (C++)
+```
+[ Harvester ]  ──→  [ MariaDB ]  ──→  [ User / Display ]
+  Node.js              raw data           C++ client
+  USDA API             persistent
+                       volume
+```
 
-Data retrieval and presentation
-Demonstrates multi-language integration
-Temporary implementation (will be refactored in Phase 3)
+Three containers communicate over a private bridge network (`mycelium_network`). Data persists through a named volume mapped to the host.
 
-Roadmap
-Phase 1: Proof of Concept ✅
+**Harvester** (Node.js)
+- Fetches plant data from the USDA Plants Database via its public API
+- Stores raw JSON responses in MariaDB
+- Base/subclass harvester pattern for adding new sources
 
- Three-container architecture
- Single plant data scraping (USDA)
- Database storage
- Data display via C++ container
+**Database** (MariaDB)
+- Stores raw harvested data as JSON in a flexible schema
+- Unique constraint prevents duplicate entries per source/plant/type
+- Initialised via `init.sql` on first run
 
-Phase 2: Multi-Source Harvesting 🔄 (In Progress)
+**User / Display** (C++)
+- Connects to MariaDB and retrieves the most recent harvest entry
+- Placeholder implementation — will be replaced by a data cleaner and calculator in Phase 3
 
- Code refactoring and modular structure
- Multiple source scrapers for single plant
- Concurrent data collection
- Source abstraction layer
+---
 
-Phase 3: Data Processing Pipeline
+## Technologies
 
- Container 4: Data Cleaner/Normalizer (C++)
+- Docker & Docker Compose
+- Node.js (ESM) with async/await
+- Pino structured logging (configurable pretty/JSON output)
+- MariaDB with JSON column storage
+- C++ with MariaDB connector
 
-Maps disparate source formats to unified schema
-Handles data quality and validation
+---
 
+## Setup
 
- Container 5: Calculator (C++)
+**1. Clone the repo**
+```bash
+git clone <repo_url>
+cd garden_sandbox
+```
 
-Performs DLI (Daily Light Integral) calculations
-Converts qualitative requirements (e.g., "full sun") to quantitative metrics
-Adapts recommendations to geographic locations
+**2. Configure environment**
+```bash
+cp project/srcs/.env.example project/srcs/.env
+```
+Fill in your values — see `.env.example` for all required variables and descriptions.
 
+**3. Build and start**
+```bash
+make build
+make up
+```
 
+**4. View output**
+```bash
+make logs
+```
 
-Phase 4: Production Features
+For all available make targets run `make help`.
 
- Task queue system for scalable harvesting
- API layer for data access
- Automated scheduling and retry logic
- Monitoring and logging
+---
 
-Technical Decisions
-Why Playwright for scraping?
-USDA and many plant databases don't provide public APIs and render content client-side with JavaScript. Playwright handles this where simple HTTP requests cannot.
-Why C++ for processing?
+## Project Status
 
-Demonstrates polyglot architecture skills
-Legitimately faster for computational workloads (millions of calculations)
-Shows systems programming capability
-Employment market differentiation (Finnish context)
+**Phase 1 complete** — single source harvest pipeline working end to end:
+- USDA Plants Database harvested via API
+- Raw data stored in MariaDB
+- C++ client retrieves and displays latest record
+- Structured logging with per-module log files
 
-Why separate containers?
+Active development continues in Phase 2. See [ROADMAP.md](./ROADMAP.md).
 
-Separation of concerns (scraping vs processing vs display)
-Independent scaling of components
-Language-specific optimization per task
-Easier testing and development
+---
 
-Project Goals
+## License
 
-Technical: Build a production-ready data pipeline demonstrating:
-
-Distributed systems architecture
-Multi-language integration
-Concurrent processing
-Data normalization from heterogeneous sources
-
-
-Domain: Solve the problem of vague plant care instructions:
-
-"Full sun" means different things in Ecuador vs Finland
-Convert qualitative requirements to measurable hours/intensity
-Provide location-specific, actionable growing advice
-
-
-
-Setup
-bashmake build  # Build all containers
-make up     # Start services
-make logs   # View output
-Current Limitations
-
-Single plant scraping only
-No deduplication logic
-Manual data inspection required
-Restart policies cause data duplication (being addressed in Phase 2)
+MIT
