@@ -1,0 +1,121 @@
+//scraping plant symbols from USDA website using Playwright
+
+// Get plant symbols from search results
+async function getPlantList(limit = 3) {
+  const browser = await chromium.launch({...});
+  const page = await browser.newPage();
+  
+  // USDA browse page (or search page)
+  await page.goto('https://plants.usda.gov/home/plantProfile?sort=sciName', {
+    waitUntil: 'networkidle'
+  });
+  
+  // Extract plant symbols from the table/list
+  const plantSymbols = await page.evaluate((limit) => {
+    const links = Array.from(document.querySelectorAll('a[href*="/plant-profile/"]'));
+    return links
+      .slice(0, limit)
+      .map(link => {
+        const match = link.href.match(/plant-profile\/([A-Z0-9]+)/);
+        return match ? match[1] : null;
+      })
+      .filter(Boolean);
+  }, limit);
+  
+  await browser.close();
+  return plantSymbols; // ['ABBA', 'ACPL', 'ACRU']
+}
+
+// eg of getting the deets 
+async function scrapePlant(symbol) {
+  const browser = await chromium.launch({...});
+  const page = await browser.newPage();
+  
+  await page.goto(`https://plants.usda.gov/plant-profile/${symbol}`, {
+    waitUntil: 'networkidle'
+  });
+  
+  const traits = await page.evaluate(() => {
+    // Your existing scraping logic
+  });
+  
+  await browser.close();
+  return { symbol, traits };
+}
+
+// what i assume will be the index.js ? 
+async function main() {
+  const connection = await mysql.createConnection({...});
+  
+  // Get list of plants to scrape
+  console.log('Fetching plant list...');
+  const plantSymbols = await getPlantList(3); // Get 3 plants
+  console.log('Found plants:', plantSymbols);
+  
+  // Scrape all plants CONCURRENTLY
+  console.log('Scraping plants...');
+  const results = await Promise.all(
+    plantSymbols.map(symbol => scrapePlant(symbol))
+  );
+  
+  // Insert into DB
+  for (const result of results) {
+    try {
+      await connection.execute(
+        'INSERT INTO raw_harvest (source, plant_identifier, data_type, raw_json) VALUES (?, ?, ?, ?)',
+        ['usda', result.symbol, 'traits', JSON.stringify(result.traits)]
+      );
+      console.log(`✓ Inserted ${result.symbol}`);
+    } catch (err) {
+      if (err.code === 'ER_DUP_ENTRY') {
+        console.log(`⊘ ${result.symbol} already exists, skipping`);
+      } else {
+        throw err;
+      }
+    }
+  }
+  
+  await connection.end();
+  console.log('Done!');
+  process.exit(0);
+}
+
+// these could go in makefile 
+under a test command
+# Run harvester
+docker-compose -f srcs/docker-compose.yml run --rm harvester
+
+# Wait for it to finish, then run user
+docker-compose -f srcs/docker-compose.yml run --rm user
+
+user main update 
+// Query all data
+if (mysql_query(conn, "SELECT * FROM raw_harvest ORDER BY id ASC")) {
+    std::cerr << "SELECT failed: " << mysql_error(conn) << "\n";
+    mysql_close(conn);
+    return 1;
+}
+
+MYSQL_RES *result = mysql_store_result(conn);
+if (result == nullptr) {
+    std::cerr << "mysql_store_result() failed\n";
+    mysql_close(conn);
+    return 1;
+}
+
+int num_rows = mysql_num_rows(result);
+std::cout << "Found " << num_rows << " plants:\n\n";
+
+MYSQL_ROW row;
+while ((row = mysql_fetch_row(result))) {
+    std::cout << "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+    std::cout << "ID: " << row[0] << "\n";
+    std::cout << "Source: " << row[1] << "\n";
+    std::cout << "Plant: " << row[2] << "\n";
+    std::cout << "Data Type: " << row[3] << "\n";
+    std::cout << "Harvested: " << row[5] << "\n";
+    std::cout << "JSON: " << row[4] << "\n";
+}
+
+mysql_free_result(result);
+mysql_close(conn);

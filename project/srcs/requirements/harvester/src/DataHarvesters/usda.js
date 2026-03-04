@@ -1,4 +1,3 @@
-import { chromium } from "playwright";
 import {BaseDataHarvester} from "./base.js";
 import { scrapingLogger} from '#utils/logger.js';
 

@@ -43,7 +43,7 @@ export async function insertHarvest(data) {
 		}
 		console.error('Error inserting harvest data:', error);
 		throw error; // Re-raise the error so the caller knows it failed
-	}// finally {
+	}
 
 }
 

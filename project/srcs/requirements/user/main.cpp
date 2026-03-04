@@ -1,18 +1,4 @@
 
-//int main() {
-//	// Initialize MySQL connection
-//	MYSQL *conn;
-//	conn = mysql_init(NULL);
-//	
-//	// Connect to the database
-//	if (mysql_real_connect(conn, "localhost", "root", "password", "testdb", 0, NULL, 0)) {
-//		std::cout << "Connected to MySQL database successfully!" << std::endl;
-//	} else {
-//		std::cerr << "Failed to connect to MySQL database: " << mysql_error(conn) << std::endl;
-//	}
-//	mysql_close(conn);
-//}
-
 /**
  * @brief reference code for connecting to MySQL database and querying data 
 */

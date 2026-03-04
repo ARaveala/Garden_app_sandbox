@@ -48,8 +48,8 @@ async function main() {
     
     // 4. Get list of plants to harvest
     const PLANT_LIMIT = parseInt(process.env.PLANT_LIMIT || '3');
-    logger.info({ limit: PLANT_LIMIT }, 'Fetching plant list...');
     
+	logger.info({ limit: PLANT_LIMIT }, 'Fetching plant list...');
     const plantSymbols = await DataHarvester.getPlantList(PLANT_LIMIT);
     logger.info({ count: plantSymbols.length, plants: plantSymbols }, '✓ Plant list retrieved');
     
@@ -61,7 +61,7 @@ async function main() {
     // 5. Define data types to harvest per plant
     const dataTypes = ['traits', 'characteristics'];
     
-    // 6. Harvest each plant
+    // 6. Harvest each plant, this needs adjustment, usda collects both at the same time now
     logger.info('Starting data collection...');
     
     let totalHarvestd = 0;
@@ -69,9 +69,9 @@ async function main() {
     let totalSkipped = 0;
     let totalErrors = 0;
     
+	// should create collect from, source and provide different source harvesting methods here 
     for (const symbol of plantSymbols) {
       logger.info({ plant: symbol }, `Processing plant: ${symbol}`);
-	  //const types =
       for (const dataType of dataTypes) {
         try {
           // Harvest
@@ -145,79 +145,3 @@ main()
     errorLogger.error({ err }, 'Application crashed');
     process.exit(1);
   });
-//```
-//
-//---
-//
-//## Key Features of This index.js
-//
-//### 1. **Clear Flow**
-//```
-//Load config → Connect DB → Init DataHarvester → Get plants → Harvest → Insert → Summary
-//import mysql from 'mysql2/promise';
-//
-//import { chromium } from "playwright";
-//
-//async function main() {
-//  // Connect to DB
-//  const connection = await mysql.createConnection({
-//    host: process.env.DB_HOST,
-//    user: process.env.DB_USER,
-//    password: process.env.DB_PASS,
-//    database: process.env.DB_NAME
-//  });
-//
-//console.log('Connected to database');
-//
-//const browser = await chromium.launch({
-// // executablePath: "/usr/bin/chromium-browser",   // or /usr/bin/chromium
-//  headless: true,
-//  args: [
-//    "--no-sandbox",
-////    "--disable-gpu",
-////    "--disable-dev-shm-usage",
-//   // "--disable-setuid-sandbox",
-////    "--disable-software-rasterizer"
-//  ]
-//});
-//
-//const page = await browser.newPage();
-//
-//await page.goto("https://plants.usda.gov/plant-profile/ABBA", {
-//  waitUntil: "networkidle"
-//});
-//
-//const traits = await page.evaluate(() => {
-//  const rows = Array.from(document.querySelectorAll("tr"));
-//  const data = {};
-//  for (const row of rows) {
-//    const key = row.querySelector("th")?.innerText;
-//    const val = row.querySelector("td")?.innerText;
-//    if (key && val) data[key] = val;
-//  }
-//  return data;
-//});
-//
-//console.log('Data scarped:', traits);
-//
-//
-//await browser.close();
-//
-////insert into DB
-//await connection.execute(
-//	  'INSERT INTO raw_harvest (source, plant_identifier, data_type, raw_json) VALUES (?, ?, ?, ?)',
-//	  ['usda', 'abbot', 'traits', JSON.stringify(traits)]
-//);
-//
-//console.log('Data inserted into database');
-//// clean up 
-//
-//await connection.end();
-//console.log("connection closed");
-//process.exit(0);
-//}
-//main().catch(error => {
-//  console.error('Error in main function:', error);
-//  process.exit(1);
-//});
-//

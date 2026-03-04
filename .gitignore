@@ -1,11 +1,9 @@
 #.env files yet to be excluded , they are just test features at this stage and not used in production, but they will be in the future so we should exclude them now to avoid accidentally committing secrets to git
 
-info.md
-proggression.md
 
 project/srcs/requirements/db_data
 project/srcs/requirements/harvester/node_modules
 project/srcs/logs
+project/.env
 
-safe.txt
-safe2.txt
+personal_notes/*
