@@ -15,14 +15,17 @@
 ## Phase 1.1 — Dev/Production Environment Switch
 🔄 In Progress
 
-Currently there is no formal distinction between development and production runs.
-`NODE_ENV` and `PLANT_LIMIT` are already read from the environment, so the
-mechanism exists — this phase formalises it.
+There is a formal distinction between development and production runs.
+`NODE_ENV` is read from enviornment and `PLANT_LIMIT` from respective settings.json.
 
-- Provide a `.env.dev` and `.env.prod` alongside the existing `.env.example`
-- `PLANT_LIMIT` controls harvest size: small fixed number in dev, full dataset in production
+Logs are hard to follow this must be corrected before moving further
+
+- Provided a settings.json with dev and production values ✅
+- dev/production is decided upon isnide .env ✅
+- `PLANT_LIMIT` controls harvest size: small fixed number in dev, full dataset in production ✅
+- Add missing debug log points where flow was hard to follow
+- Make loggs more readbale and easier to follow, eg trace does not need to be in app.log aswell.
 - `LOG_LEVEL` and `LOG_PRETTY` already differ per environment — document the expected values for each
-- Add a `make dev` and `make prod` target to the Makefile that selects the correct env file
 - Harvest limit remains intentionally low during all phases until the data processing
   pipeline (Phase 3) is ready to handle a full dataset
 

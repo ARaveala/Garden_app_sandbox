@@ -5,7 +5,7 @@
 	
 		},
 		"production" : {
-			"plant_limit" : 4
+			"plant_limit" : 0
 		}
 	}
 }

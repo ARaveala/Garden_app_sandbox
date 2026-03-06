@@ -8,9 +8,6 @@ export class BaseDataHarvester {
 		}
 		this.config = config;
 		this.settings = settings;
-		//CHANGED
-		//this.name = config.name;
-		//this.baseUrl = config.baseUrl;
 	}
 
 	// limit is optional, if not provided, it should harvest all plants available on the source
