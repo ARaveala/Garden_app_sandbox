@@ -1,4 +1,4 @@
-![Roadmap](docs/roadmap2.drawio.svg)
+![Roadmap](docs/roadmap.drawio.svg)
 
 | Phase | Description |
 |---|---|
