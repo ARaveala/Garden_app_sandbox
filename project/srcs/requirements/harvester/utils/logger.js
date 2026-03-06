@@ -80,7 +80,7 @@ function createLogger(name, filename) {
 		{ stream: fileTransport(path.join(logsDir, filename)) }
 	];
 
-	if (isProduction) {
+	if (!isProduction) {
 		streams.push({
 			stream: pino.transport({
 				target: 'pino-pretty',

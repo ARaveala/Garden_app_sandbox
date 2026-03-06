@@ -1,0 +1,11 @@
+{
+	"usda" : {
+		"dev" : {
+			"plant_limit" : 3
+	
+		},
+		"production" : {
+			"plant_limit" : 4
+		}
+	}
+}
