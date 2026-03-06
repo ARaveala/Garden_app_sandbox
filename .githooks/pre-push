@@ -1,0 +1,23 @@
+#!/bin/sh
+# .githooks/pre-push
+# Blocks direct pushes to main.
+# All changes to main must go through a pull request.
+
+REMOTE=$1
+URL=$2
+
+while read LOCAL_REF LOCAL_SHA REMOTE_REF REMOTE_SHA; do
+  if echo "$REMOTE_REF" | grep -qE "^refs/heads/main$"; then
+    echo ""
+    echo "  ✗ Direct push to main is not allowed."
+    echo ""
+    echo "  Workflow:"
+    echo "    1. Work on a feature branch"
+    echo "    2. Push the branch:  git push origin your-branch"
+    echo "    3. Open a PR on GitHub to merge into main"
+    echo ""
+    exit 1
+  fi
+done
+
+exit 0

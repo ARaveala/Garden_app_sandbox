@@ -1,0 +1,68 @@
+#!/bin/sh
+# .githooks/commit-msg
+# Enforces conventional commit format:
+# <type>: <subject>
+#
+# Optional body separated by blank line.
+# Subject must be 50 chars or fewer.
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Ignore merge commits
+if echo "$COMMIT_MSG" | grep -qE "^Merge "; then
+  exit 0
+fi
+
+# --- Rule 1: valid prefix ---
+VALID_TYPES="feat|fix|docs|refactor|chore|test|style"
+if ! echo "$COMMIT_MSG" | grep -qE "^($VALID_TYPES)(\(.+\))?: .+"; then
+  echo ""
+  echo "  ✗ Invalid commit message format."
+  echo ""
+  echo "  Required: <type>: <subject>"
+  echo "  Types:    feat | fix | docs | refactor | chore | test | style"
+  echo ""
+  echo "  Examples:"
+  echo "    feat: add GBIF harvester"
+  echo "    fix: handle empty response from GBIF API"
+  echo "    docs: update roadmap phase 2a"
+  echo "    refactor: move rate limiting into base class"
+  echo "    chore: add .env.dev example"
+  echo ""
+  exit 1
+fi
+
+# --- Rule 2: subject line max 50 chars ---
+SUBJECT=$(echo "$COMMIT_MSG" | head -n1)
+SUBJECT_LEN=${#SUBJECT}
+if [ "$SUBJECT_LEN" -gt 50 ]; then
+  echo ""
+  echo "  ✗ Subject line too long ($SUBJECT_LEN chars). Max is 50."
+  echo ""
+  echo "  Keep the subject short. Move detail into the body:"
+  echo ""
+  echo "    fix: handle empty GBIF response"
+  echo "    "
+  echo "    GBIF returns 200 with empty array for unknown species."
+  echo "    Added guard before attempting to iterate results."
+  echo ""
+  exit 1
+fi
+
+# --- Rule 3: if body exists, line 2 must be blank ---
+SECOND_LINE=$(echo "$COMMIT_MSG" | sed -n '2p')
+if [ -n "$SECOND_LINE" ]; then
+  echo ""
+  echo "  ✗ Missing blank line between subject and body."
+  echo ""
+  echo "  Format:"
+  echo "    feat: add GBIF harvester"
+  echo "    "
+  echo "    Fetches occurrence data by scientific name."
+  echo "    Stores raw JSON with source metadata."
+  echo ""
+  exit 1
+fi
+
+exit 0
