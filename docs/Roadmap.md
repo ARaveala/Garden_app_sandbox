@@ -1,6 +1,7 @@
 # Roadmap
 
-## Phase 1 — Proof of Concept ✅
+## Phase 1 — Proof of Concept
+✅
 
 - Three-container architecture (harvester, database, display)
 - USDA Plants Database harvested via API
@@ -11,7 +12,8 @@
 
 ---
 
-## Phase 1.1 — Dev/Production Environment Switch 🔄 In Progress
+## Phase 1.1 — Dev/Production Environment Switch
+🔄 In Progress
 
 Currently there is no formal distinction between development and production runs.
 `NODE_ENV` and `PLANT_LIMIT` are already read from the environment, so the
@@ -29,7 +31,7 @@ mechanism exists — this phase formalises it.
 
 ---
 
-## Phase 2 — Multi-Source Harvesting 🔄 In Progress
+## Phase 2 — Multi-Source Harvesting 
 
 Raw data collection from multiple sources. The goal of this phase is to collect
 and store raw data reliably — not to clean, reconcile, or deduplicate it.
