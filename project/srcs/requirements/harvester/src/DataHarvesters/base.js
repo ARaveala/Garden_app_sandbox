@@ -1,16 +1,17 @@
 export class BaseDataHarvester {
-	constructor(config) {
+	constructor(config, settings) {
 		if (!config) {
 			throw new Error('Config object is required to initialize the DataHarvester');
 		}
-
+		if (!settings) {
+			throw new Error('Settings object is required to initialize the DataHarvester');
+		}
 		this.config = config;
-		this.name = config.name;
-		this.baseUrl = config.baseUrl;
+		this.settings = settings;
 	}
 
 	// limit is optional, if not provided, it should harvest all plants available on the source
-	async getPlantList(limit) {
+	async getPlantList() {
 		throw new Error(`${this.name}: getPlantList() method must be implemented`);
 	}
 

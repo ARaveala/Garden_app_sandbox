@@ -13,26 +13,21 @@
 ---
 
 ## Phase 1.1 — Dev/Production Environment Switch
-🔄 In Progress
+✅
 
-Currently there is no formal distinction between development and production runs.
-`NODE_ENV` and `PLANT_LIMIT` are already read from the environment, so the
-mechanism exists — this phase formalises it.
-
-- Provide a `.env.dev` and `.env.prod` alongside the existing `.env.example`
-- `PLANT_LIMIT` controls harvest size: small fixed number in dev, full dataset in production
-- `LOG_LEVEL` and `LOG_PRETTY` already differ per environment — document the expected values for each
-- Add a `make dev` and `make prod` target to the Makefile that selects the correct env file
+- There is a formal distinction between development and production runs.
+`NODE_ENV` is read from enviornment and `PLANT_LIMIT` from respective settings.json.
+- Provided a settings.json with dev and production values
+- Logs are readable utalizing log levels correctly. 
+- `LOG_LEVEL` and `LOG_PRETTY` already differ per environment — documented in .env.example.
 - Harvest limit remains intentionally low during all phases until the data processing
   pipeline (Phase 3) is ready to handle a full dataset
-
-> **Note:** The full plant list will not be harvested until Phase 3 is stable.
-> Increasing `PLANT_LIMIT` is the only change required at that point.
+- Git hooks implemented to help commits and prs have consistency
 
 ---
 
 ## Phase 2 — Multi-Source Harvesting 
-
+🔄 In Progress
 Raw data collection from multiple sources. The goal of this phase is to collect
 and store raw data reliably — not to clean, reconcile, or deduplicate it.
 Contradictions between sources are expected and are intentionally left for Phase 3.

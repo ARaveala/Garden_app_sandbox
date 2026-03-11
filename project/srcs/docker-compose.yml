@@ -59,6 +59,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - DB_HOST=db
+      - NODE_ENV=${NODE_ENV}
       - DB_NAME=${MYSQL_DATABASE}
       - DB_USER=${MYSQL_USER}
       - DB_PASS=${MYSQL_PASSWORD}

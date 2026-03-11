@@ -21,7 +21,9 @@ function extractTaxonomy(ancestors) {
 
 
 export class USDADataHarvester extends BaseDataHarvester {
-	async getPlantList(limit = 10) {
+	
+	async getPlantList() {
+		const limit = this.settings.plant_limit;
 		scrapingLogger.info({ limit }, 'Fetching plant list from USDA API');
 		const url = this.buildURl('search_api');
 		scrapingLogger.info({ url }, 'Calling API');
@@ -89,7 +91,7 @@ export class USDADataHarvester extends BaseDataHarvester {
 			characteristics: characteristicsData
   		};
 		// show all details beforee return 
-		scrapingLogger.info({ identifier, combinedData }, 'Returning combined data');
+		scrapingLogger.trace({ identifier, combinedData }, 'Returning combined data');
 		return {
 			source: 'usda',
 			plant_identifier: identifier,  // Store the symbol
