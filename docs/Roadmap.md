@@ -13,29 +13,21 @@
 ---
 
 ## Phase 1.1 — Dev/Production Environment Switch
-🔄 In Progress
+✅
 
-There is a formal distinction between development and production runs.
+- There is a formal distinction between development and production runs.
 `NODE_ENV` is read from enviornment and `PLANT_LIMIT` from respective settings.json.
-
-Logs are hard to follow this must be corrected before moving further
-
-- Provided a settings.json with dev and production values ✅
-- dev/production is decided upon isnide .env ✅
-- `PLANT_LIMIT` controls harvest size: small fixed number in dev, full dataset in production ✅
-- Add missing debug log points where flow was hard to follow
-- Make loggs more readbale and easier to follow, eg trace does not need to be in app.log aswell.
-- `LOG_LEVEL` and `LOG_PRETTY` already differ per environment — document the expected values for each
+- Provided a settings.json with dev and production values
+- Logs are readable utalizing log levels correctly. 
+- `LOG_LEVEL` and `LOG_PRETTY` already differ per environment — documented in .env.example.
 - Harvest limit remains intentionally low during all phases until the data processing
   pipeline (Phase 3) is ready to handle a full dataset
-
-> **Note:** The full plant list will not be harvested until Phase 3 is stable.
-> Increasing `PLANT_LIMIT` is the only change required at that point.
+- Git hooks implemented to help commits and prs have consistency
 
 ---
 
 ## Phase 2 — Multi-Source Harvesting 
-
+🔄 In Progress
 Raw data collection from multiple sources. The goal of this phase is to collect
 and store raw data reliably — not to clean, reconcile, or deduplicate it.
 Contradictions between sources are expected and are intentionally left for Phase 3.

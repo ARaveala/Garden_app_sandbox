@@ -60,7 +60,7 @@ async function main() {
 
 	// 4. Get list of plants to harvest
 	const plantSymbols = await DataHarvester.getPlantList();
-	logger.info({ count: plantSymbols.length, plants: plantSymbols }, '✓ Plant list retrieved');
+	logger.trace({ count: plantSymbols.length, plants: plantSymbols }, '✓ Plant list retrieved');
 
 	if (plantSymbols.length === 0) {
 	  logger.warn('No plants found to harvest');

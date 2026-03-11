@@ -2,7 +2,6 @@ import pino from 'pino';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-// consider adding if enabled trace to env... its alot of data and if not needed we should be able to turn it on and off
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -57,8 +56,6 @@ function jsonFileTransport(filepath) {
 	return fs.createWriteStream(filepath, { flags: 'a' });
 }
 
-// Production: JSON to console + files
-// fix , using poroduction now, should change to dev , unsure if trace logs in prod should also be in seperate files
 const isProduction = process.env.NODE_ENV === 'production';
 
 /**

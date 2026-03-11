@@ -91,7 +91,7 @@ export class USDADataHarvester extends BaseDataHarvester {
 			characteristics: characteristicsData
   		};
 		// show all details beforee return 
-		scrapingLogger.info({ identifier, combinedData }, 'Returning combined data');
+		scrapingLogger.trace({ identifier, combinedData }, 'Returning combined data');
 		return {
 			source: 'usda',
 			plant_identifier: identifier,  // Store the symbol
