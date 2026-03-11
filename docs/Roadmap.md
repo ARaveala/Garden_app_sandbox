@@ -35,12 +35,18 @@ Contradictions between sources are expected and are intentionally left for Phase
 ### Phase 2a — API-Based Sources
 
 - Refactor harvester for concurrent multi-source collection
-- Add GBIF (occurrence data — where plants actually grow, GPS coordinates)
-- Add Kew POWO (authoritative taxonomy, native ranges, synonyms)
+- Add Trefle (plant traits, real measured ranges — lux, temperature, pH, nutrients)
 - Source abstraction layer — each source as a self-contained harvester class
 - Resolve restart policy causing data duplication on container restart
 - Document each source in `docs/sources/<source>.md`:
   fields harvested, field meanings, known limitations, and why the source is included
+
+XX Add GBIF (occurrence data — where plants actually grow, GPS coordinates)XX
+Dropped, occurrence data adds no value without a health/condition layer. Coordinates alone do not serve the calculation model.
+
+XX Add Kew POWO XX 
+Deferred, taxonomy is sufficiently covered by USDA and Trefle for now
+
 
 ### Phase 2b — Research Paper Pipeline
 
@@ -59,6 +65,12 @@ depends on Phase 2a sources being stable enough to know which plants to prioriti
 > **Deferred:** Automated full-text NLP extraction. Initial extraction will use
 > abstract-level keyword matching. Deeper extraction can be added later.
 
+> Deferred: GBIF occurrences. May revisit in a later phase if cross-referencing observed
+> locations against climate data becomes relevant to model validation.
+
+
+> Deferred: Environmental/weather pre-collection. NASA POWER and equivalent sources will
+> be called live per user request at runtime, not harvested.
 ---
 
 ## Phase 3 — Data Processing Pipeline
