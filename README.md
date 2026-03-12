@@ -58,6 +58,7 @@ cd garden_sandbox
 cp project/srcs/.env.example project/srcs/.env
 ```
 Fill in your values — see `.env.example` for all required variables and descriptions.
+Note: trefle account required https://trefle.io
 
 **3. Build and start**
 ```bash

@@ -18,6 +18,22 @@ Plant data is sourced from the USDA Plants Database, which is explicitly free fo
 **Citation (required):**
 > USDA, NRCS. The PLANTS Database (http://plants.usda.gov). National Plant Data Team, Greensboro, NC USA.
 
+
+### Trefle
+
+This project retrieves plant data from the Trefle API.  
+The Trefle API software is licensed under the **GNU Affero General Public License v3 (AGPL‑3.0)**.  
+This project does **not** use or redistribute any portion of the Trefle API source code; it only consumes publicly available API data.  
+The AGPL‑3.0 license applies to the Trefle software itself and does **not** restrict the use or redistribution of the plant data returned by the API.
+
+**Citation (required):**  
+> Trefle API. Open plant data API. https://github.com/treflehq/trefle-api.
+
+**Note:**  
+Trefle aggregates plant information from multiple open data sources.  
+Users should refer to Trefle’s documentation for details on upstream data licensing.
+
+
 ---
 
 ## Future Data Sources

@@ -35,10 +35,11 @@ Contradictions between sources are expected and are intentionally left for Phase
 ### Phase 2a — API-Based Sources
 
 - Refactor harvester for concurrent multi-source collection
-- Add Trefle (plant traits, real measured ranges — lux, temperature, pH, nutrients)
-- Source abstraction layer — each source as a self-contained harvester class
-- Resolve restart policy causing data duplication on container restart
-- Document each source in `docs/sources/<source>.md`:
+- Add Trefle (plant traits, real measured ranges — lux, temperature, pH, nutrients) ✅
+- Add ecocrop (numetric values for plant tolerances )
+- Source abstraction layer — each source as a self-contained harvester class ✅
+- Resolve restart policy causing data duplication on container restart - issue was not with conatiner but with code ✅
+- Document each source in `docs/sources/<source>.md`: done for trefle, usda(rough),
   fields harvested, field meanings, known limitations, and why the source is included
 
 XX Add GBIF (occurrence data — where plants actually grow, GPS coordinates)XX

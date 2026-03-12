@@ -18,5 +18,19 @@
 			"requests_per_second": 60,
 			"concurrent_requests": 3 
 		}
+	},
+	"trefle" : {
+		"name": "trefle Plant Database",
+		"base_url": "https://trefle.io",
+		"base_url_api": "https://trefle.io",
+		"endpoints": {
+			"plant_list": "/api/v1/plants?token={token}&order[scientific_name]=asc&page=",
+			"plant_detail": "/api/v1/species/{slug}?token={token}"
+		},
+		"rate_limit": {
+			"requests_per_second": 1,
+			"concurrent_requests": 1 
+		}
 	}
+
 }

@@ -7,5 +7,14 @@
 		"production" : {
 			"plant_limit" : 0
 		}
+	},
+	"trefle" : {
+		"dev" : {
+			"plant_limit" : 3
+	
+		},
+		"production" : {
+			"plant_limit" : 0
+		}
 	}
 }

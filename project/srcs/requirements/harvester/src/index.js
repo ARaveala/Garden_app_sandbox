@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { USDADataHarvester } from './DataHarvesters/usda.js';
+import { TrefleDataHarvester } from './DataHarvesters/trefle.js';
 import { connectToDB, insertHarvest, closeDBConnection } from './db_connection.js';
 import { logger, errorLogger } from '#utils/logger.js';
 
@@ -51,74 +52,55 @@ async function main() {
 	const config = loadConfig();
 	const settings = loadSettings();
 	logger.info('✓ Configuration loaded');
-	logger.info(`limit: ${settings?.usda?.[env]?.plant_limit}`);
+	logger.debug(`limit: ${settings?.usda?.[env]?.plant_limit}`);
+	logger.debug(`limit: ${settings?.trefle?.[env]?.plant_limit}`);
 
-	// 3. Initialize USDA DataHarvester
-	logger.info('Initializing USDA DataHarvester...');
-	const DataHarvester = new USDADataHarvester(config.usda, settings.usda[env]);
-	logger.info('✓ DataHarvester initialized');
-
-	// 4. Get list of plants to harvest
-	const plantSymbols = await DataHarvester.getPlantList();
-	logger.trace({ count: plantSymbols.length, plants: plantSymbols }, '✓ Plant list retrieved');
-
-	if (plantSymbols.length === 0) {
-	  logger.warn('No plants found to harvest');
-	  return;
-	}
-
-	// 5. Define data types to harvest per plant
-	const dataTypes = ['traits', 'characteristics'];
-
-	// 6. Harvest each plant, this needs adjustment, usda collects both at the same time now
-	logger.info('Starting data collection...');
+	//Initialize USDA DataHarvester
+	logger.info('Initializing DataHarvesters...');
 
 	let totalHarvested = 0;
 	let totalInserted = 0;
 	let totalSkipped = 0;
 	let totalErrors = 0;
+	const harvesters = [
+		new USDADataHarvester(config.usda, settings.usda[env]),
+		new TrefleDataHarvester(config.trefle, settings.trefle[env])
+	]
 
-	// should create collect from, source and provide different source harvesting methods here 
-	for (const symbol of plantSymbols) {
-	  logger.info({ plant: symbol }, `Processing plant: ${symbol}`);
-	  for (const dataType of dataTypes) {
-	    try {
-	      // Harvest
-	      logger.info({ plant: symbol, type: dataType }, `Scraping ${dataType}...`);
-	      const result = await DataHarvester.harvestPlantData(symbol, { dataType });
-	      totalHarvested++;
-		
-	      // Insert into database
-	      const inserted = await insertHarvest(result);
-		
-	      if (inserted) {
-	        totalInserted++;
-	        logger.info({ plant: symbol, type: dataType }, `✓ Saved ${symbol} - ${dataType}`);
-	      } else {
-	        totalSkipped++;
-	        logger.info({ plant: symbol, type: dataType }, `⊘ ${symbol} - ${dataType} already exists`);
-	      }
-	  
-	      // Rate limiting (respect the source)
-	      const delayMs = 1000 / (config.usda.rate_limit?.requests_per_second || 1);
-	      await new Promise(resolve => setTimeout(resolve, delayMs));
-	  
-	    } catch (err) {
-	      totalErrors++;
-	      errorLogger.error({ 
-	        err, 
-	        plant: symbol, 
-	        dataType,
-	        message: err.message,
-	        stack: err.stack 
-	      }, `Failed to process ${symbol} - ${dataType}`);
-	  
-	      // Continue with next data type instead of crashing
-	      logger.warn({ plant: symbol, type: dataType }, 'Continuing to next item...');
-	    }
-	  }
+	logger.info('✓ DataHarvesters initialized , starting data collection');
+	for (const harvester of harvesters) {
+  		const list = await harvester.getPlantList()
+  		for (const identifier of list) {
+    		logger.info({ plant: identifier }, `Processing `);
+			try {
+				const result = await harvester.harvestPlantData(identifier)
+				totalHarvested++;
+				const inserted = await insertHarvest(result);
+				if (inserted) { 
+					totalInserted++;
+					logger.debug({plant: identifier, harvester: harvester.config.name}, `✓ Saved`);
+				}
+				else { 
+					totalSkipped++; 
+					logger.debug({plant: identifier, harvester: harvester.config.name}, `⊘ already in database`);
+				}
+				const delayMs = 1000 / (harvester.config.rate_limit?.requests_per_second || 1);
+				await new Promise(resolve => setTimeout(resolve, delayMs));
+			}
+			catch (err) {
+				totalErrors++;
+				errorLogger.error({ 
+					err, 
+					plant: identifier, 
+					harvester: harvester.config.name,
+					message: err.message,
+					stack: err.stack 
+				}, `Failed to process ${identifier} - ${harvester.config.name}`);
+				// Continue with next data type instead of crashing
+				logger.warn({ plant: identifier, harvester: harvester.config.name }, 'Continuing to next item...');
+			}
+  		}
 	}
-
 	// 7. Summary
     logger.info('========================================');
     logger.info('Harvesting Complete');

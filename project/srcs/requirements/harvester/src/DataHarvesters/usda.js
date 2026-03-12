@@ -27,11 +27,10 @@ export class USDADataHarvester extends BaseDataHarvester {
 		scrapingLogger.info({ limit }, 'Fetching plant list from USDA API');
 		const url = this.buildURl('search_api');
 		scrapingLogger.info({ url }, 'Calling API');
-  
+
 		const response = await fetch(url);
 		const plants = await response.json();
 
-  
 		const plantSymbols = plants.map(plant => plant.symbol)
 			.filter(Boolean)
 			.slice(0, limit);
